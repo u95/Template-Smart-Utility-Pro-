@@ -17,7 +17,7 @@ export default function App() {
   const startUrl = 'https://u95.github.io/Smart-Utility-Pro/';
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-['Plus_Jakarta_Sans',sans-serif]">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
       {/* Navigation Header */}
       <Navbar startUrl={startUrl} />
 

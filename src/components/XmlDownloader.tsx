@@ -8,83 +8,101 @@ export function XmlDownloader() {
 
   const bloggerXmlContent = `<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gbl/b' xmlns:data='http://www.google.com/2005/gbl/data' xmlns:expr='http://www.google.com/2005/gbl/expr'>
+<html b:css='false' b:default-markups='true' b:responsive='true' b:template-version='1.3.0' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gbl/b' xmlns:data='http://www.google.com/2005/gbl/data' xmlns:expr='http://www.google.com/2005/gbl/expr'>
 <head>
-<meta charset='utf-8'/>
-<meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
 <title><data:blog.pageTitle/></title>
 <b:skin><![CDATA[
-/*
+/* -----------------------------------------------
   Theme Name: Smart Utility Pro
   Author: umn ministry
-  Version: 3.5 Pro
-  Description: Professional Web Utility & Blogger Template with Dark Mode & Core Web Vitals Optimization
-*/
-:root {
-  --bg-primary: #020617;
-  --text-primary: #f8fafc;
-  --accent-color: #6366f1;
-}
+  URL: https://u95.github.io/Smart-Utility-Pro/
+  Copyright: © 2026 umn ministry Smart Utility Pro. All rights reserved
+-------------------------------------------------- */
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Plus Jakarta Sans', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #020617;
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 .utility-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #1e293b;
+}
+.site-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+}
 .btn-start {
   background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
-  color: #fff;
-  padding: 14px 28px;
+  color: #ffffff !important;
+  padding: 12px 24px;
   border-radius: 12px;
   font-weight: 700;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
 }
+.post-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.post-title a {
+  color: #f8fafc;
+  text-decoration: none;
+  font-size: 20px;
+}
+.footer-text {
+  text-align: center;
+  padding: 30px 0;
+  border-top: 1px solid #1e293b;
+  color: #64748b;
+  font-size: 13px;
+}
 ]]></b:skin>
-<b:template-skin><![CDATA[
-/* Template Customizer Variables */
-]]></b:template-skin>
 </head>
 <body>
   <div class='utility-container'>
-    <header style='display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid #1e293b;'>
-      <h1 style='font-size: 24px; font-weight: 800; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>
-        <data:blog.title/>
-      </h1>
-      <a class='btn-start' href='https://u95.github.io/Smart-Utility-Pro/' target='_blank'>
-        START Smart Utility Pro
-      </a>
+    <header class='header-bar'>
+      <div class='site-title'><data:blog.title/></div>
+      <a class='btn-start' href='https://u95.github.io/Smart-Utility-Pro/' target='_blank'>START Smart Utility Pro</a>
     </header>
 
     <main style='padding: 40px 0;'>
-      <b:section id='main-content' class='main' showaddelement='yes'>
+      <b:section class='main' id='main-content' showaddelement='yes'>
         <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog'>
           <b:includable id='main'>
-            <div class='posts-grid'>
-              <b:loop values='data:posts' var='post'>
-                <article style='background: #0f172a; border: 1px solid #1e293b; border-radius: 16px; padding: 24px; margin-bottom: 24px;'>
-                  <h2 style='font-size: 20px; margin-bottom: 12px;'>
-                    <a expr:href='data:post.url' style='color: #f8fafc; text-decoration: none;'><data:post.title/></a>
-                  </h2>
-                  <div style='color: #94a3b8; font-size: 14px;'><data:post.snippet/></div>
-                </article>
-              </b:loop>
-            </div>
+            <b:loop values='data:posts' var='post'>
+              <article class='post-card'>
+                <h2 class='post-title'>
+                  <a expr:href='data:post.url'><data:post.title/></a>
+                </h2>
+                <div style='color: #94a3b8; font-size: 14px; margin-top: 8px;'>
+                  <data:post.snippet/>
+                </div>
+              </article>
+            </b:loop>
           </b:includable>
         </b:widget>
       </b:section>
     </main>
 
-    <footer style='text-align: center; padding: 30px 0; border-top: 1px solid #1e293b; color: #64748b; font-size: 13px;'>
+    <footer class='footer-text'>
       © 2026 umn ministry Smart Utility Pro. All rights reserved
     </footer>
   </div>
@@ -103,8 +121,21 @@ body {
     setTimeout(() => setDownloaded(false), 3000);
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(bloggerXmlContent);
+  const handleCopy = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(bloggerXmlContent);
+      } else {
+        throw new Error('Clipboard API unavailable');
+      }
+    } catch {
+      const textArea = document.createElement('textarea');
+      textArea.value = bloggerXmlContent;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 3000);
   };
